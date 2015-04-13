@@ -29,9 +29,11 @@
       <file leaf-file-name="Line.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/linebuilder/Line.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="833">
-              <caret line="48" column="95" selection-start-line="48" selection-start-column="95" selection-end-line="48" selection-end-column="95" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="379" max-vertical-offset="1020">
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,8 +41,8 @@
       <file leaf-file-name="Vertex.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/Vertex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="1479">
-              <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="906" max-vertical-offset="1479">
+              <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1805#1806#0" expanded="true" />
@@ -63,8 +65,8 @@
       <file leaf-file-name="LineStorage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/storages/LineStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="1190">
-              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1190">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding>
                 <element signature="e#665#666#0" expanded="true" />
                 <element signature="e#692#693#0" expanded="true" />
@@ -80,12 +82,12 @@
       <file leaf-file-name="LineBuilder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/vertexlisteners/LineBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6527051" vertical-offset="510" max-vertical-offset="1326">
-              <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+            <state vertical-scroll-proportion="-0.12321428" vertical-offset="1021" max-vertical-offset="3111">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1672#2274#0" expanded="true" />
-                <element signature="e#2273#2274#0" expanded="true" />
+                <element signature="e#2437#3191#0" expanded="true" />
+                <element signature="e#3190#3191#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,12 +96,14 @@
       <file leaf-file-name="Tab.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/view/tabs/Tab.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="736" max-vertical-offset="1309">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="957" max-vertical-offset="1530">
+              <caret line="69" column="15" selection-start-line="69" selection-start-column="15" selection-end-line="69" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1902#1903#0" expanded="true" />
-                <element signature="e#1944#1945#0" expanded="true" />
+                <element signature="e#2242#2243#0" expanded="true" />
+                <element signature="e#2276#2277#0" expanded="true" />
+                <element signature="e#2314#2315#0" expanded="true" />
+                <element signature="e#2356#2357#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,9 +157,9 @@
         <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/view/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/storages/LineStorage.java" />
         <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/Vertex.java" />
-        <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/linebuilder/Line.java" />
         <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/view/tabs/Tab.java" />
         <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/vertexlisteners/LineBuilder.java" />
+        <option value="$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/linebuilder/Line.java" />
       </list>
     </option>
   </component>
@@ -834,12 +838,12 @@
       <workItem from="1428296223856" duration="4821000" />
       <workItem from="1428648686748" duration="13145000" />
       <workItem from="1428833795458" duration="686000" />
-      <workItem from="1428836403054" duration="14647000" />
+      <workItem from="1428836403054" duration="30172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89157000" />
+    <option name="totallyTimeSpent" value="104682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1056" extended-state="0" />
@@ -892,21 +896,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/vertexlisteners/LineBuilder.java</url>
-          <line>41</line>
-          <properties class="by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.vertexlisteners.LineBuilder" method="mouseReleased" />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/vertexlisteners/LineBuilder.java</url>
-          <line>47</line>
-          <properties method="mouseMoved" />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="25" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -915,22 +905,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/VertexCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="816">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/vertexlisteners/LineBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1672#2274#0" expanded="true" />
-            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2437#3191#0" expanded="true" />
+            <element signature="e#3190#3191#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1117,13 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/linebuilder/LineCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/awt/Graphics2D.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37696335" vertical-offset="19725" max-vertical-offset="20502">
@@ -1156,20 +1131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="2019" max-vertical-offset="25177">
           <caret line="170" column="13" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="90810" max-vertical-offset="164696">
-          <caret line="5682" column="29" selection-start-line="5682" selection-start-column="29" selection-end-line="5682" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/linebuilder/linelistener/LineWeightSetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38568935" vertical-offset="0" max-vertical-offset="850">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1254,10 +1215,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/awt/event/MouseEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2580" max-vertical-offset="19244">
+          <caret line="230" column="28" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/storages/LineStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="47" max-vertical-offset="1190">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1190">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
             <element signature="e#665#666#0" expanded="true" />
             <element signature="e#692#693#0" expanded="true" />
@@ -1269,10 +1238,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.19402985" vertical-offset="52308" max-vertical-offset="164730">
+          <caret line="3322" column="16" selection-start-line="3322" selection-start-column="16" selection-end-line="3322" selection-end-column="16" />
+          <folding>
+            <element signature="e#114811#114812#0" expanded="true" />
+            <element signature="e#114859#114860#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/Vertex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="1479">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="906" max-vertical-offset="1479">
+          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1805#1806#0" expanded="true" />
@@ -1281,34 +1261,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/awt/Composite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="1173">
+          <caret line="67" column="28" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/linebuilder/Line.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="833">
-          <caret line="48" column="95" selection-start-line="48" selection-start-column="95" selection-end-line="48" selection-end-column="95" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="379" max-vertical-offset="1020">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/view/tabs/Tab.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="736" max-vertical-offset="1309">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="957" max-vertical-offset="1530">
+          <caret line="69" column="15" selection-start-line="69" selection-start-column="15" selection-end-line="69" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1902#1903#0" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
+            <element signature="e#2242#2243#0" expanded="true" />
+            <element signature="e#2276#2277#0" expanded="true" />
+            <element signature="e#2314#2315#0" expanded="true" />
+            <element signature="e#2356#2357#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/by/zverugo/bsuir/ppvis/grapheditor/logic/vertexbuilder/vertexlisteners/LineBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6527051" vertical-offset="510" max-vertical-offset="1326">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+        <state vertical-scroll-proportion="-0.12321428" vertical-offset="1021" max-vertical-offset="3111">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1672#2274#0" expanded="true" />
-            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2437#3191#0" expanded="true" />
+            <element signature="e#3190#3191#0" expanded="true" />
           </folding>
         </state>
       </provider>

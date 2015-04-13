@@ -60,7 +60,7 @@ public class Vertex extends JPanel {
         Ellipse2D ellipse = new Ellipse2D.Double(0, 0, 15, 15);
         g2.draw(ellipse);
         //g2.clip(ellipse);
-//        g2.fill(ellipse);
+        g2.fill(ellipse);
         //setOpaque(false);
     //g.getFontMetrics().stringWidth("fddf");
 }
