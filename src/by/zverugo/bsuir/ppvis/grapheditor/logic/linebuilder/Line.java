@@ -47,7 +47,6 @@ public class Line extends JPanel {
         g2.setStroke(new BasicStroke(3));
         //g2.setStroke(new BasicStroke(1.0f, 0, 0, 1.0f, new float[]{10, 10}, 1.0f));
         Line2D line = new Line2D.Double(startPoint.x,startPoint.y,finishPoint.x,finishPoint.y);
-
         g2.draw(line);
         setOpaque(false);
     }

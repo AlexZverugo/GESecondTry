@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.geom.Ellipse2D;
 
 public class Vertex extends JPanel {
@@ -59,16 +60,10 @@ public class Vertex extends JPanel {
         Ellipse2D ellipse = new Ellipse2D.Double(0, 0, 15, 15);
         g2.draw(ellipse);
         //g2.clip(ellipse);
-        g2.fill(ellipse);
+//        g2.fill(ellipse);
         //setOpaque(false);
     //g.getFontMetrics().stringWidth("fddf");
 }
-
-    @Override
-    protected void paintBorder(Graphics g) {
-        super.paintBorder(g);
-    }
-
 
 
     private void callAndRemoveVertex() {

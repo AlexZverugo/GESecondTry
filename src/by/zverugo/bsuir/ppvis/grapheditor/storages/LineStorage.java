@@ -19,11 +19,11 @@ public class LineStorage {
         currentIndx = 0;
     }
 
-    public int checkBuffer() {
-        if (currentIndx == 0) {
-            return 0;
+    public boolean checkBuffer() {
+        if (currentIndx == 2) {
+            return true;
         } else {
-            return 1;
+            return false;
         }
     }
 
@@ -41,16 +41,18 @@ public class LineStorage {
     }
 
     public Point getSecondPoint(){
-
-        return buffer[1];
+        if (currentIndx == 2)
+            return buffer[1];
+        else
+            return null;
     }
 
     public void setLine(JComponent component){
         lineList.add(component);
     }
 
-    public void setPoint(int x, int y){
-        buffer[currentIndx] = new Point(x,y);
+    public void setPoint(Point vertex) {
+        buffer[currentIndx] = vertex;
         currentIndx++;
     }
 
@@ -58,5 +60,9 @@ public class LineStorage {
         buffer[0] = null;
         buffer[1] = null;
         currentIndx = 0;
+    }
+
+    public int getCurrentIndx() {
+        return currentIndx;
     }
 }
