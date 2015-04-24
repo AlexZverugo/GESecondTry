@@ -1,5 +1,6 @@
 package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.vertexlisteners;
 
+import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
@@ -15,8 +16,11 @@ public class VertexRemover extends MouseAdapter {
     private JComponent tabPanel;
     private JLabel vertexLabel;
     private VertexStorage vertexStorage;
+    private GraphStorage graphStorage;
 
-    public VertexRemover(GEToolBar toolBar, JPanel vertexLink, JComponent tabPanel, JLabel vertexLabel, VertexStorage vertexStorage) {
+    public VertexRemover(GEToolBar toolBar, JPanel vertexLink, JComponent tabPanel,
+                         JLabel vertexLabel, VertexStorage vertexStorage, GraphStorage graphStorage) {
+        this.graphStorage = graphStorage;
         this.toolBar = toolBar;
         this.vertexLink = vertexLink;
         this.tabPanel = tabPanel;
@@ -27,9 +31,8 @@ public class VertexRemover extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (toolBar.getDeleteVertexButton().isSelected()) {
-            tabPanel.remove(vertexLink);
+            graphStorage.removeVertex(tabPanel,vertexLink);
             tabPanel.remove(vertexLabel);
-            vertexStorage.removeVertex(vertexLink);
             tabPanel.repaint();
         }
     }

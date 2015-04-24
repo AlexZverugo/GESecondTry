@@ -84,7 +84,7 @@ public class MenuBuilder implements Builder<JMenu> {
     public MenuBuilder newItem() {
         JMenuItem newItem = new JMenuItem(GraphEditorKeys.NEW, KeyEvent.VK_N);
         newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-        newItem.addActionListener(new TabCreate(frame,tabbedPane, toolBar));
+        newItem.addActionListener(new TabCreate(frame,tabbedPane, toolBar,saveItem));
         this.newItem = newItem;
 
         return this;

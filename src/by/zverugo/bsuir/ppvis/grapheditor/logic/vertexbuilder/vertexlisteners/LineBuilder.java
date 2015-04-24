@@ -2,6 +2,7 @@ package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.vertexlisteners;
 
 import by.zverugo.bsuir.ppvis.grapheditor.logic.linebuilder.Line;
 import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.Vertex;
+import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
@@ -27,12 +28,15 @@ public class LineBuilder extends MouseAdapter {
 
     private GEToolBar toolBar;
     private LineStorage lineStorage;
+    private GraphStorage graphStorage;
     private JFrame frame;
     private Vertex currentVertex;
     private Tab tabPanel;
 
-    public LineBuilder(GEToolBar toolBar, LineStorage lineStorage, Vertex currentVertex, JComponent tabPanel, JFrame frame) {
+    public LineBuilder(GEToolBar toolBar, LineStorage lineStorage, Vertex currentVertex,
+                       JComponent tabPanel, JFrame frame, GraphStorage graphStorage) {
         this.toolBar = toolBar;
+        this.graphStorage = graphStorage;
         this.frame = frame;
         this.lineStorage = lineStorage;
         this.currentVertex = currentVertex;
@@ -45,6 +49,7 @@ public class LineBuilder extends MouseAdapter {
             if (lineStorage.getCurrentIndx() == 0) {
                 lineStorage.setPoint(currentVertex.getCoordinate());
                 lineStorage.setVertexSelected(true);
+                graphStorage.setTempVertex(currentVertex);
                 drawTempLine();
 
             } else
@@ -53,9 +58,10 @@ public class LineBuilder extends MouseAdapter {
                 lineStorage.setVertexSelected(false);
                 tabPanel.repaint();
 
-                tabPanel.getFinalLine();
+                tabPanel.getTempDrawPanel().getFinalLine();
 
                 Line line = createAndSetLineComponentBounds();
+                graphStorage.setLine(currentVertex,line);
                 lineStorage.setLine(line);
                 if (line == null) {
                     lineStorage.reset();
@@ -73,9 +79,9 @@ public class LineBuilder extends MouseAdapter {
         tabPanel.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent e) {
                 if (lineStorage.isVertexSelected()) {
-                    tabPanel.deleteTempLine();
-                    tabPanel.drawTempLine(currentVertex.getCoordinate(), new Point(e.getX(), e.getY()));
-                    tabPanel.setPreviousPoints();
+                    tabPanel.getTempDrawPanel().deleteTempLine();
+                    tabPanel.getTempDrawPanel().drawTempLine(currentVertex.getCoordinate(), new Point(e.getX(), e.getY()));
+                    tabPanel.getTempDrawPanel().setPreviousPoints();
                 }
                 if (!lineStorage.isVertexSelected() && lineStorage.checkBuffer()) {
                     tabPanel.removeMouseMotionListener(this);
@@ -109,18 +115,12 @@ public class LineBuilder extends MouseAdapter {
     }
 
     private Line paintLineFirstCase() {
-
+        Point startPoint = new Point(0,0);
         Point lastPoint = new Point(lineStorage.getSecondPoint().x
-                - lineStorage.getFirstPoint().x - 10, lineStorage.getSecondPoint().y
-                - lineStorage.getFirstPoint().y - 10);
+                - lineStorage.getFirstPoint().x, lineStorage.getSecondPoint().y
+                - lineStorage.getFirstPoint().y);
 
-        Polygon triangle = new Polygon();
-        triangle.addPoint(lastPoint.x - 8, lastPoint.y - 8);
-        triangle.addPoint(lastPoint.x - 8, lastPoint.y - 18);
-        triangle.addPoint(lastPoint.x - 18, lastPoint.y - 8);
-
-        Line line = new Line(new Point(10,10), lastPoint, toolBar, frame, tabPanel, triangle);
-
+        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage);
 
         line.setBounds(lineStorage.getFirstPoint().x, lineStorage.getFirstPoint().y,
                 lineStorage.getSecondPoint().x - lineStorage.getFirstPoint().x,
@@ -130,11 +130,10 @@ public class LineBuilder extends MouseAdapter {
     }
 
     private Line paintLineSecondCase() {
-        Polygon triangle = new Polygon();
+        Point startPoint = new Point(0, lineStorage.getFirstPoint().y - lineStorage.getSecondPoint().y);
+        Point lastPoint = new Point(lineStorage.getSecondPoint().x - lineStorage.getFirstPoint().x, 0);
 
-        Line line = new Line(new Point(0, lineStorage.getFirstPoint().y - lineStorage.getSecondPoint().y),
-                new Point(lineStorage.getSecondPoint().x - lineStorage.getFirstPoint().x, 0), toolBar, frame, tabPanel,
-                triangle);
+        Line line = new Line(startPoint,lastPoint, toolBar, frame, tabPanel,graphStorage);
 
         line.setBounds(lineStorage.getFirstPoint().x, lineStorage.getFirstPoint().y -
                         (lineStorage.getFirstPoint().y - lineStorage.getSecondPoint().y),
@@ -145,11 +144,10 @@ public class LineBuilder extends MouseAdapter {
     }
 
     private Line paintLineThirdCase() {
-        Polygon triangle = new Polygon();
+        Point startPoint = new Point(0, lineStorage.getSecondPoint().y - lineStorage.getFirstPoint().y);
+        Point lastPoint = new Point(lineStorage.getFirstPoint().x - lineStorage.getSecondPoint().x, 0);
 
-        Line line = new Line(new Point(0, lineStorage.getSecondPoint().y
-                - lineStorage.getFirstPoint().y), new Point(lineStorage.getFirstPoint().x
-                - lineStorage.getSecondPoint().x, 0), toolBar, frame, tabPanel,triangle);
+        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage);
 
         line.setBounds(lineStorage.getSecondPoint().x, lineStorage.getSecondPoint().y -
                         (lineStorage.getSecondPoint().y - lineStorage.getFirstPoint().y),
@@ -160,12 +158,13 @@ public class LineBuilder extends MouseAdapter {
     }
 
     private Line paintLineFoursCase() {
-
-        Polygon triangle = new Polygon();
-
-        Line line = new Line(new Point(0, 0), new Point(lineStorage.getFirstPoint().x
+        Point startPoint = new Point(0, 0);
+        Point lastPoint = new Point(lineStorage.getFirstPoint().x
                 - lineStorage.getSecondPoint().x, lineStorage.getFirstPoint().y
-                - lineStorage.getSecondPoint().y), toolBar, frame, tabPanel,triangle);
+                - lineStorage.getSecondPoint().y);
+
+
+        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage);
 
         line.setBounds(lineStorage.getSecondPoint().x, lineStorage.getSecondPoint().y,
                 lineStorage.getFirstPoint().x - lineStorage.getSecondPoint().x,

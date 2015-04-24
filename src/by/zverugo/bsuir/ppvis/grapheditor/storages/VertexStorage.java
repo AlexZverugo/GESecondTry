@@ -32,6 +32,7 @@ public class VertexStorage {
         vertexCount--;
     }
 
+
     public  int getSize () {
 
         return vertexList.size();
