@@ -9,17 +9,10 @@ import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Timer;
-import java.awt.Color;
 import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+
 
 /**
  * Created by Alex on 24.03.2015.
@@ -120,7 +113,10 @@ public class LineBuilder extends MouseAdapter {
                 - lineStorage.getFirstPoint().x, lineStorage.getSecondPoint().y
                 - lineStorage.getFirstPoint().y);
 
-        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage);
+
+
+        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage,
+                lineStorage.getFirstPoint(), lineStorage.getSecondPoint());
 
         line.setBounds(lineStorage.getFirstPoint().x, lineStorage.getFirstPoint().y,
                 lineStorage.getSecondPoint().x - lineStorage.getFirstPoint().x,
@@ -133,7 +129,8 @@ public class LineBuilder extends MouseAdapter {
         Point startPoint = new Point(0, lineStorage.getFirstPoint().y - lineStorage.getSecondPoint().y);
         Point lastPoint = new Point(lineStorage.getSecondPoint().x - lineStorage.getFirstPoint().x, 0);
 
-        Line line = new Line(startPoint,lastPoint, toolBar, frame, tabPanel,graphStorage);
+        Line line = new Line(startPoint,lastPoint, toolBar, frame, tabPanel,graphStorage,
+                lineStorage.getFirstPoint(), lineStorage.getSecondPoint());
 
         line.setBounds(lineStorage.getFirstPoint().x, lineStorage.getFirstPoint().y -
                         (lineStorage.getFirstPoint().y - lineStorage.getSecondPoint().y),
@@ -147,7 +144,8 @@ public class LineBuilder extends MouseAdapter {
         Point startPoint = new Point(0, lineStorage.getSecondPoint().y - lineStorage.getFirstPoint().y);
         Point lastPoint = new Point(lineStorage.getFirstPoint().x - lineStorage.getSecondPoint().x, 0);
 
-        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage);
+        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage,
+                lineStorage.getFirstPoint(), lineStorage.getSecondPoint());
 
         line.setBounds(lineStorage.getSecondPoint().x, lineStorage.getSecondPoint().y -
                         (lineStorage.getSecondPoint().y - lineStorage.getFirstPoint().y),
@@ -164,7 +162,8 @@ public class LineBuilder extends MouseAdapter {
                 - lineStorage.getSecondPoint().y);
 
 
-        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage);
+        Line line = new Line(startPoint, lastPoint, toolBar, frame, tabPanel,graphStorage,
+                lineStorage.getFirstPoint(), lineStorage.getSecondPoint());
 
         line.setBounds(lineStorage.getSecondPoint().x, lineStorage.getSecondPoint().y,
                 lineStorage.getFirstPoint().x - lineStorage.getSecondPoint().x,

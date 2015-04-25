@@ -13,12 +13,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 
 public class Vertex extends JPanel {
@@ -29,18 +26,15 @@ public class Vertex extends JPanel {
     private String name;
     private JLabel vertexLabel;
     private JPanel thisObjectLink;
-    private VertexStorage vertexStorage;
     private LineStorage lineStorage;
     private GraphStorage graphStorage;
     private int coordX;
     private int coordY;
 
-    public Vertex(JFrame frame, JComponent tabPanel, GEToolBar toolBar,
-                  VertexStorage vertexStorage, LineStorage lineStorage, int x, int y, GraphStorage graphStorage) {
+    public Vertex(JFrame frame, JComponent tabPanel, GEToolBar toolBar, LineStorage lineStorage, int x, int y, GraphStorage graphStorage) {
         this.frame = frame;
         this.tabPanel = (Tab) tabPanel;
         this.toolBar = toolBar;
-        this.vertexStorage = vertexStorage;
         this.lineStorage = lineStorage;
         this.graphStorage = graphStorage;
         coordX = x;
@@ -54,7 +48,6 @@ public class Vertex extends JPanel {
     }
 
     private void addVertexToContainer() {
-        vertexStorage.setVertex(this);
         graphStorage.setVertex(this);
     }
 
@@ -73,26 +66,22 @@ public class Vertex extends JPanel {
 
     private void callAndRemoveVertex() {
         addMouseListener(new VertexNameBuilder(toolBar, frame, name, vertexLabel, tabPanel, coordX, coordY));
-        addMouseListener(new VertexRemover(toolBar, this, tabPanel, vertexLabel, vertexStorage,graphStorage));
+        addMouseListener(new VertexRemover(toolBar, this, tabPanel, vertexLabel,graphStorage));
         addMouseListener(new LineBuilder(toolBar, lineStorage, this, tabPanel, frame,graphStorage));
-//        addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//                System.out.println("IN");
-//                tabPanel.setComponentSelected(true);
-//            }
-//
-//            public void mouseExited (MouseEvent e) {
-//                System.out.println("OUT");
-//                tabPanel.setComponentSelected(false);
-//            }
-//        });
     }
 
     public Point getCoordinate() {
-
         return new Point(coordX, coordY);
     }
 
+
+    public String getName() {
+
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

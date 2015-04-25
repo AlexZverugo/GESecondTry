@@ -7,6 +7,7 @@ import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabCreate;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.util.GraphEditorKeys;
 import by.zverugo.bsuir.ppvis.grapheditor.util.StaticResource;
+import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.FileOpener;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.TabsContainer;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
@@ -94,6 +95,7 @@ public class MenuBuilder implements Builder<JMenu> {
         JMenuItem openItem = new JMenuItem(GraphEditorKeys.OPEN, new ImageIcon(StaticResource.OPEN_IMAGE.path()));
         openItem.setMnemonic(KeyEvent.VK_O);
         this.openItem = openItem;
+        openItem.addActionListener(new FileOpener(frame,tabbedPane, toolBar,saveItem));
 
         return this;
     }

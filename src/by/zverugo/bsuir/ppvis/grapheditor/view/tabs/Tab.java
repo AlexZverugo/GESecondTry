@@ -6,13 +6,11 @@ import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
-import javax.swing.AbstractButton;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
 
 /**
@@ -22,7 +20,6 @@ public class Tab extends JPanel {
 
     private JFrame frame;
     private GEToolBar toolBar;
-    private VertexStorage vertexStorage;
     private LineStorage lineStorage;
     private GraphStorage graphStorage;
     private TabsContainer tabbedPane;
@@ -32,9 +29,9 @@ public class Tab extends JPanel {
     private Line2D currentLine;
     private TempDrawPanel tempDrawPanel;
     private boolean flag;
-    private AbstractButton saveButton;
+    private JMenuItem saveButton;
 
-    public Tab( JFrame frame, GEToolBar toolBar,TabsContainer tabbedPane, AbstractButton saveButton) {
+    public Tab( JFrame frame, GEToolBar toolBar,TabsContainer tabbedPane,JMenuItem saveButton) {
         this.frame = frame;
         this.toolBar = toolBar;
         this.tabbedPane = tabbedPane;
@@ -53,17 +50,11 @@ public class Tab extends JPanel {
 
 
     private void addTabListeners (){
-        addMouseListener(new VertexCreator(this, toolBar, frame,vertexStorage,lineStorage,graphStorage));
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        addMouseListener(new VertexCreator(this, toolBar, frame,lineStorage,graphStorage));
+        saveButton.addActionListener(new FileCreator(graphStorage));
     }
 
     private void buildStorages(){
-        vertexStorage = new VertexStorage();
         lineStorage = new LineStorage();
         graphStorage = new GraphStorage();
     }

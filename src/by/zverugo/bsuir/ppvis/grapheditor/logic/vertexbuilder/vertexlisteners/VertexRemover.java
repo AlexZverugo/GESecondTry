@@ -15,17 +15,15 @@ public class VertexRemover extends MouseAdapter {
     private JPanel vertexLink;
     private JComponent tabPanel;
     private JLabel vertexLabel;
-    private VertexStorage vertexStorage;
     private GraphStorage graphStorage;
 
     public VertexRemover(GEToolBar toolBar, JPanel vertexLink, JComponent tabPanel,
-                         JLabel vertexLabel, VertexStorage vertexStorage, GraphStorage graphStorage) {
+                         JLabel vertexLabel, GraphStorage graphStorage) {
         this.graphStorage = graphStorage;
         this.toolBar = toolBar;
         this.vertexLink = vertexLink;
         this.tabPanel = tabPanel;
         this.vertexLabel = vertexLabel;
-        this.vertexStorage = vertexStorage;
     }
 
     @Override

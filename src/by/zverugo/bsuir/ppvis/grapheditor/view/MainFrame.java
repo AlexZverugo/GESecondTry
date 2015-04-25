@@ -74,8 +74,8 @@ public class MainFrame {
         MenuBuilder menuBuilder = new MenuBuilder();
 
         JMenu fileMenu = menuBuilder
-                .text(GraphEditorKeys.FILE).frame(frame).tabbedPane(tabbedPane).toolBar(toolBar).newItem()
-                .openItem().closeItem().saveItem().saveAsItem().exitItem().exitSeparator()
+                .text(GraphEditorKeys.FILE).frame(frame).tabbedPane(tabbedPane).toolBar(toolBar).saveItem().newItem()
+                .openItem().closeItem().saveAsItem().exitItem().exitSeparator()
                 .mnemonic(KeyEvent.VK_F).build();
 
         menuBuilder.reset();
@@ -86,6 +86,7 @@ public class MainFrame {
 
         mainMenu.add(fileMenu);
         mainMenu.add(editMenu);
+
 
         frame.setJMenuBar(mainMenu);
     }

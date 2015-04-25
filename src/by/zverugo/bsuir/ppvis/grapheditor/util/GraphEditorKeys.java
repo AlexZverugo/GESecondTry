@@ -20,6 +20,7 @@ public final class GraphEditorKeys {
     public static final String FRAME_NOT_NULL_ERR_MSG = "'frame' param cannot be null";
     public static final String TABBED_PANE_NOT_NULL_ERR_MSG = "'tabbedPane' param cannot be null";
     public static final String TOOL_BAR_NOT_NULL_ERR_MSG = "'toolBar' param cannot be null";
+    public static final String SAVE_ITEM_NOT_NULL_ERR_MSG = "'saveItem' param cannot be null";
     public static final String NEW_TAB_NAME = "New Tab ";
     public static final String ENTER_VERTEX_NAME_MSG = "Enter vertex name:";
     public static final String SELECTION = "Selection";

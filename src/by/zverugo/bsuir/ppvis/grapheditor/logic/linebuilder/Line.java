@@ -14,7 +14,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
@@ -22,24 +21,28 @@ import java.awt.geom.Line2D;
 
 public class Line extends JPanel {
 
-    private Point startPoint;
-    private Point finishPoint;
+    private Point startDrawingPoint;
+    private Point finishDrawingPoint;
     private String weight;
     private JLabel lineLabel;
     private GEToolBar toolBar;
     private JFrame frame;
     private  JComponent tabPanel;
     private Line thisLine;
-    private Vertex currentVertex;
     private GraphStorage graphStorage;
+    private Point firstVertex;
+    private Point secondVertex;
 
-    public Line(Point A, Point B,GEToolBar toolBar,JFrame frame, final JComponent tabPanel, final GraphStorage graphStorage){
+    public Line(Point A, Point B,GEToolBar toolBar,JFrame frame, JComponent tabPanel,
+                GraphStorage graphStorage, Point firstVertex, Point secondVertex){
         this.toolBar = toolBar;
         this.frame = frame;
         this.tabPanel = tabPanel;
         this.graphStorage = graphStorage;
-        startPoint = A;
-        finishPoint = B;
+        this.firstVertex = firstVertex;
+        this.secondVertex = secondVertex;
+        startDrawingPoint = A;
+        finishDrawingPoint = B;
         weight = "";
         lineLabel = new JLabel(weight);
         setBackground(Color.BLUE);
@@ -65,9 +68,19 @@ public class Line extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
         //g2.setStroke(new BasicStroke(1.0f, 0, 0, 1.0f, new float[]{10, 10}, 1.0f));
-        Line2D line = new Line2D.Double(startPoint.x,startPoint.y,finishPoint.x,finishPoint.y);
+        Line2D line = new Line2D.Double(startDrawingPoint.x, startDrawingPoint.y, finishDrawingPoint.x, finishDrawingPoint.y);
         g2.draw(line);
 //        g2.setClip(line);
 //        setOpaque(false);
+    }
+
+    public Point getFirstVertex() {
+
+        return firstVertex;
+    }
+
+    public Point getSecondVertex () {
+
+        return secondVertex;
     }
 }
