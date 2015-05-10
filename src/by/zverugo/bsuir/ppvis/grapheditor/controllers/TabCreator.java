@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TabCreate implements ActionListener {
+public class TabCreator implements ActionListener {
 
     private JFrame frame;
     private TabsContainer tabbedPane;
@@ -18,7 +18,7 @@ public class TabCreate implements ActionListener {
     private Tab tab;
     private JMenuItem saveButton;
 
-    public TabCreate(JFrame frame, TabsContainer tabbedPane, GEToolBar toolBar, JMenuItem saveButton) {
+    public TabCreator(JFrame frame, TabsContainer tabbedPane, GEToolBar toolBar, JMenuItem saveButton) {
         this.frame = frame;
         this.tabbedPane = tabbedPane;
         this.toolBar = toolBar;

@@ -7,12 +7,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class VertexNameAndLineWight extends JOptionPane {
+public class VertexNameAndLineWeight extends JOptionPane {
 
     private JFrame frame;
     private String currentName;
 
-    public VertexNameAndLineWight(JFrame frame, String currentName){
+    public VertexNameAndLineWeight(JFrame frame, String currentName){
         this.frame = frame;
         this.currentName = currentName;
 
@@ -20,7 +20,7 @@ public class VertexNameAndLineWight extends JOptionPane {
 
     public String createVertexName() {
         String returnedName = (String)showInputDialog(frame,
-                GraphEditorKeys.ENTER_VERTEX_NAME_MSG,GraphEditorKeys.SELECTION, PLAIN_MESSAGE,
+                GraphEditorKeys.ENTER_MSG,GraphEditorKeys.SELECTION, PLAIN_MESSAGE,
                 new ImageIcon(StaticResource.OPEN_IMAGE.path()),null,currentName);
         if(returnedName != null){
             return returnedName;

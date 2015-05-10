@@ -10,7 +10,8 @@ public enum StaticResource {
     PASTE_IMAGE("src/by/zverugo/bsuir/ppvis/grapheditor/resources/paste.png"),
     VERTEX_IMAGE("src/by/zverugo/bsuir/ppvis/grapheditor/resources/vertex.png"),
     ARC_IMAGE("src/by/zverugo/bsuir/ppvis/grapheditor/resources/arc.png"),
-    DELETE_VERTEX_IMAGE("src/by/zverugo/bsuir/ppvis/grapheditor/resources/deletevertex.png");
+    DELETE_VERTEX_IMAGE("src/by/zverugo/bsuir/ppvis/grapheditor/resources/deletevertex.png"),
+    MOVE_VERTEX_IMAGE("src/by/zverugo/bsuir/ppvis/grapheditor/resources/dragger.png");
 
     private String path;
 

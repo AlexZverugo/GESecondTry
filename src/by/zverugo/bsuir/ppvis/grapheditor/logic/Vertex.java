@@ -1,8 +1,8 @@
-package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder;
+package by.zverugo.bsuir.ppvis.grapheditor.logic;
 
-import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.vertexlisteners.LineBuilder;
-import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.vertexlisteners.VertexNameBuilder;
-import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder.vertexlisteners.VertexRemover;
+import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners.LineBuilder;
+import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners.VertexNameBuilder;
+import by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners.VertexRemover;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
@@ -25,22 +25,20 @@ public class Vertex extends JPanel {
     private GEToolBar toolBar;
     private String name;
     private JLabel vertexLabel;
-    private JPanel thisObjectLink;
-    private LineStorage lineStorage;
+    private VertexStorage vertexStorage;
     private GraphStorage graphStorage;
     private int coordX;
     private int coordY;
 
-    public Vertex(JFrame frame, JComponent tabPanel, GEToolBar toolBar, LineStorage lineStorage, int x, int y, GraphStorage graphStorage) {
+    public Vertex(JFrame frame, JComponent tabPanel, int x, int y, GraphStorage graphStorage) {
         this.frame = frame;
         this.tabPanel = (Tab) tabPanel;
-        this.toolBar = toolBar;
-        this.lineStorage = lineStorage;
+        toolBar = this.tabPanel.getToolBar();
+        vertexStorage = this.tabPanel.getVertexStorage();
         this.graphStorage = graphStorage;
         coordX = x;
         coordY = y;
         name = "";
-        thisObjectLink = this;
         vertexLabel = new JLabel(name);
         addVertexToContainer();
         callAndRemoveVertex();
@@ -48,6 +46,7 @@ public class Vertex extends JPanel {
     }
 
     private void addVertexToContainer() {
+        vertexStorage.setVertex(this);
         graphStorage.setVertex(this);
     }
 
@@ -56,18 +55,16 @@ public class Vertex extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         Ellipse2D ellipse = new Ellipse2D.Double(0, 0, 15, 15);
         g2.draw(ellipse);
-//        g2.setClip(ellipse);
-        //g2.clip(ellipse);
         g2.fill(ellipse);
-        //setOpaque(false);
     //g.getFontMetrics().stringWidth("fddf");
 }
 
 
     private void callAndRemoveVertex() {
-        addMouseListener(new VertexNameBuilder(toolBar, frame, name, vertexLabel, tabPanel, coordX, coordY));
-        addMouseListener(new VertexRemover(toolBar, this, tabPanel, vertexLabel,graphStorage));
-        addMouseListener(new LineBuilder(toolBar, lineStorage, this, tabPanel, frame,graphStorage));
+        addMouseListener(new VertexNameBuilder(name, vertexLabel, tabPanel, coordX, coordY));
+        addMouseListener(new VertexRemover(this, tabPanel, vertexLabel,graphStorage));
+        addMouseListener(new LineBuilder(this, tabPanel,graphStorage));
+//        addMouseMotionListener(new VertexMover(tabPanel, this, toolBar));
     }
 
     public Point getCoordinate() {

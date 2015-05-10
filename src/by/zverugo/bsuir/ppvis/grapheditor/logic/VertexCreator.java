@@ -1,7 +1,8 @@
-package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexbuilder;
+package by.zverugo.bsuir.ppvis.grapheditor.logic;
 
 import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
+import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
 import javax.swing.JComponent;
@@ -13,23 +14,24 @@ public class VertexCreator extends MouseAdapter {
 
     private GEToolBar toolBar;
     private JFrame frame;
-    private JComponent tabPanel;
+    private Tab tabPanel;
     private LineStorage lineStorage;
     private GraphStorage graphStorage;
 
-    public VertexCreator(JComponent tabPanel, GEToolBar toolBar, JFrame frame,
-                         LineStorage lineStorage, GraphStorage graphStorage) {
+    public VertexCreator(JComponent tabPanel, JFrame frame, GraphStorage graphStorage) {
         this.frame = frame;
-        this.toolBar = toolBar;
-        this.tabPanel = tabPanel;
-        this.lineStorage = lineStorage;
+        this.tabPanel = (Tab) tabPanel;
+        toolBar = this.tabPanel.getToolBar();
+        lineStorage = this.tabPanel.getLineStorage();
         this.graphStorage = graphStorage;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         if (toolBar.getVertexButton().isSelected()) {
-            Vertex vertex = new Vertex(frame, tabPanel, toolBar, lineStorage, e.getX() + 9, e.getY() + 9, graphStorage);
+            int centerX = e.getX() + 9;
+            int centerY = e.getY() + 9;
+            Vertex vertex = new Vertex(frame, tabPanel, centerX, centerY, graphStorage);
             vertex.setBounds(e.getX(), e.getY(), 16, 16);
             tabPanel.add(vertex);
             vertex.validate();

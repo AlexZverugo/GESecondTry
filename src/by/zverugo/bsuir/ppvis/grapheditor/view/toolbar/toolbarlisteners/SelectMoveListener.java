@@ -7,21 +7,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Alex on 23.03.2015.
+ * Created by Alex on 08.05.2015.
  */
-public class SelectArcListener implements ActionListener {
+public class SelectMoveListener implements ActionListener {
 
     private GEToolBar toolBar;
 
-    public SelectArcListener(JToolBar toolBar) {
+    public SelectMoveListener(JToolBar toolBar) {
         this.toolBar = (GEToolBar) toolBar;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (toolBar.getArcButton().isSelected()) {
+        if (toolBar.getMoveVertexButton().isSelected()) {
+            toolBar.getArcButton().setSelected(false);
             toolBar.getVertexButton().setSelected(false);
             toolBar.getDeleteVertexButton().setSelected(false);
-            toolBar.getMoveVertexButton().setSelected(false);
         }
     }
 }

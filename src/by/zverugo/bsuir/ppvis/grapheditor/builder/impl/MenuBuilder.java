@@ -2,9 +2,8 @@ package by.zverugo.bsuir.ppvis.grapheditor.builder.impl;
 
 import by.zverugo.bsuir.ppvis.grapheditor.builder.Builder;
 import by.zverugo.bsuir.ppvis.grapheditor.controllers.ExitControl;
-import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabClose;
-import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabCreate;
-import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
+import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabCloser;
+import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabCreator;
 import by.zverugo.bsuir.ppvis.grapheditor.util.GraphEditorKeys;
 import by.zverugo.bsuir.ppvis.grapheditor.util.StaticResource;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.FileOpener;
@@ -15,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -30,7 +28,6 @@ public class MenuBuilder implements Builder<JMenu> {
     private String text;
     private int mnemonic;
     private boolean exitSeparator;
-    private VertexStorage vertexStorage;
 
     // Menu Items
     private JMenuItem newItem;
@@ -85,7 +82,7 @@ public class MenuBuilder implements Builder<JMenu> {
     public MenuBuilder newItem() {
         JMenuItem newItem = new JMenuItem(GraphEditorKeys.NEW, KeyEvent.VK_N);
         newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-        newItem.addActionListener(new TabCreate(frame,tabbedPane, toolBar,saveItem));
+        newItem.addActionListener(new TabCreator(frame,tabbedPane, toolBar,saveItem));
         this.newItem = newItem;
 
         return this;
@@ -103,7 +100,7 @@ public class MenuBuilder implements Builder<JMenu> {
     public MenuBuilder closeItem() {
         JMenuItem closeItem = new JMenuItem(GraphEditorKeys.CLOSE, KeyEvent.VK_C);
         closeItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_MASK));
-        closeItem.addActionListener(new TabClose(tabbedPane));
+        closeItem.addActionListener(new TabCloser(tabbedPane));
         this.closeItem = closeItem;
 
         return this;

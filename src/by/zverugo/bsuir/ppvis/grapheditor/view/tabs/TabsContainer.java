@@ -1,5 +1,7 @@
 package by.zverugo.bsuir.ppvis.grapheditor.view.tabs;
 
+import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabChooser;
+
 import javax.swing.JTabbedPane;
 
 /**
@@ -10,5 +12,6 @@ public class TabsContainer extends JTabbedPane {
     public TabsContainer() {
         setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         setVisible(true);
+        addChangeListener(new TabChooser(this));
     }
 }

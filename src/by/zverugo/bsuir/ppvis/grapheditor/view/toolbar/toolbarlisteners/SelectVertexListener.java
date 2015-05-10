@@ -1,6 +1,8 @@
 package by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners;
 
-import javax.swing.JToggleButton;
+import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
+
+import javax.swing.JToolBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,20 +11,17 @@ import java.awt.event.ActionListener;
  */
 public class SelectVertexListener implements ActionListener {
 
-    private JToggleButton vertexButton;
-    private JToggleButton arcButton;
-    private JToggleButton deleteVertexButton;
+    private GEToolBar toolBar;
 
-    public SelectVertexListener(JToggleButton vertexButton,JToggleButton arcButton,JToggleButton deleteVertexButton) {
-        this.vertexButton = vertexButton;
-        this.arcButton = arcButton;
-        this.deleteVertexButton = deleteVertexButton;
+    public SelectVertexListener(JToolBar toolBar) {
+        this.toolBar = (GEToolBar) toolBar;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (vertexButton.isSelected()) {
-            arcButton.setSelected(false);
-            deleteVertexButton.setSelected(false);
+        if (toolBar.getVertexButton().isSelected()) {
+            toolBar.getArcButton().setSelected(false);
+            toolBar.getDeleteVertexButton().setSelected(false);
+            toolBar.getMoveVertexButton().setSelected(false);
         }
     }
 

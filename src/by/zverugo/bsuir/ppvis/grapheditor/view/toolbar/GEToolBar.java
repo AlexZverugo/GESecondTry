@@ -2,6 +2,7 @@ package by.zverugo.bsuir.ppvis.grapheditor.view.toolbar;
 
 import by.zverugo.bsuir.ppvis.grapheditor.util.StaticResource;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectArcListener;
+import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectMoveListener;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectRemoveListener;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectVertexListener;
 
@@ -18,11 +19,14 @@ public class GEToolBar extends JToolBar {
     private JToggleButton vertexButton;
     private JToggleButton arcButton;
     private JToggleButton deleteVertexButton;
+    private JToggleButton moveVertexButton;
+
 
     public GEToolBar() {
         vertexButton = buildVertexButton();
         arcButton = buildArcButton();
         deleteVertexButton = buildDeleteVertexButton();
+        moveVertexButton = buildMoveVertexButton ();
         setButtonsSelected();
         toolBarOptionsAndItems();
     }
@@ -31,6 +35,12 @@ public class GEToolBar extends JToolBar {
         JToggleButton vertexButton = new JToggleButton(new ImageIcon(StaticResource.VERTEX_IMAGE.path()));
 
         return vertexButton;
+    }
+
+    private JToggleButton buildMoveVertexButton () {
+        JToggleButton moveVertexButton = new JToggleButton(new ImageIcon(StaticResource.MOVE_VERTEX_IMAGE.path()));
+
+        return moveVertexButton;
     }
 
     private JToggleButton buildArcButton () {
@@ -46,9 +56,10 @@ public class GEToolBar extends JToolBar {
     }
 
     private void setButtonsSelected() {
-        vertexButton.addActionListener(new SelectVertexListener(vertexButton, arcButton, deleteVertexButton));
-        arcButton.addActionListener(new SelectArcListener(vertexButton, arcButton, deleteVertexButton));
-        deleteVertexButton.addActionListener(new SelectRemoveListener(vertexButton, arcButton, deleteVertexButton));
+        vertexButton.addActionListener(new SelectVertexListener(this));
+        arcButton.addActionListener(new SelectArcListener(this));
+        deleteVertexButton.addActionListener(new SelectRemoveListener(this));
+        moveVertexButton.addActionListener(new SelectMoveListener(this));
 
     }
 
@@ -67,6 +78,11 @@ public class GEToolBar extends JToolBar {
         return deleteVertexButton;
     }
 
+    public JToggleButton getMoveVertexButton() {
+
+        return moveVertexButton;
+    }
+
 
     private void toolBarOptionsAndItems() {
         setOrientation(SwingConstants.VERTICAL);
@@ -74,5 +90,6 @@ public class GEToolBar extends JToolBar {
         add(vertexButton);
         add(arcButton);
         add(deleteVertexButton);
+//        add(moveVertexButton);
     }
 }

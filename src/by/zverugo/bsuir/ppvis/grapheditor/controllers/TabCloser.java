@@ -5,10 +5,10 @@ import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.TabsContainer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TabClose implements ActionListener {
+public class TabCloser implements ActionListener {
     private TabsContainer tabbedPane;
 
-    public TabClose(TabsContainer tabbedPane){
+    public TabCloser(TabsContainer tabbedPane){
         this.tabbedPane = tabbedPane;
     }
 
