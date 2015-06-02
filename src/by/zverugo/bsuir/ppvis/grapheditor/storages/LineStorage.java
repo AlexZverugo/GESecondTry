@@ -1,5 +1,8 @@
 package by.zverugo.bsuir.ppvis.grapheditor.storages;
 
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Line;
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Vertex;
+
 import java.awt.Point;
 import java.util.LinkedList;
 
@@ -8,24 +11,32 @@ import java.util.LinkedList;
  */
 public class LineStorage {
     private Point[] buffer;
-    private LinkedList <Point> lineList;
-    private LinkedList <String> weightList;
-    private int currentIndx;
+    private Vertex startVertex;
+    private LinkedList <Line> lineList;
+    private int currentIndex;
     private boolean flag;
 
     public LineStorage(){
         buffer = new Point[2];
-        lineList = new LinkedList <Point>();
-        weightList = new LinkedList <String>();
-        currentIndx = 0;
+        lineList = new LinkedList <Line>();
+        currentIndex = 0;
     }
 
     public boolean checkBuffer() {
-        if (currentIndx == 2) {
+        if (currentIndex == 2) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public void setVertexBuffer(Vertex vertex) {
+        startVertex = vertex;
+    }
+
+    public Vertex getStartVertex() {
+
+        return startVertex;
     }
 
     public boolean isVertexSelected() {
@@ -42,7 +53,7 @@ public class LineStorage {
     }
 
     public Point getSecondPoint(){
-        if (currentIndx == 2)
+        if (currentIndex == 2)
             return buffer[1];
         else
             return null;
@@ -50,69 +61,54 @@ public class LineStorage {
 
 
     public void setPoint(Point vertex) {
-        buffer[currentIndx] = vertex;
-        currentIndx++;
-        lineList.add(vertex);
+        buffer[currentIndex] = vertex;
+        currentIndex++;
     }
 
     public void reset(){
         buffer[0] = null;
         buffer[1] = null;
-        currentIndx = 0;
+        startVertex = null;
+        currentIndex = 0;
     }
 
-    public int getCurrentIndx() {
-        return currentIndx;
+    public void setLine(Line line){
+
+        lineList.add(line);
+    }
+
+    public void removeLine(Line line){
+        lineList.remove(line);
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
     }
 
 
-//    public void setPointOfLine(Point point){
-//        lineList.add(point);
+//    public void removePointOfLine(Point point){
+//        lineList.remove(point);
 //    }
 
-    public void removePointOfLine(Point point){
-        lineList.remove(point);
+    public Line getForRemove(Point point){
+
+        for (Line line : lineList){
+            if ((line.getFinishPoint().x == point.x && line.getFinishPoint().y == point.y)
+                    || (line.getStartPoint().x == point.x && line.getStartPoint().y == point.y)) {
+                lineList.remove(line);
+                return line;
+            }
+        }
+
+        return null;
     }
 
-    public Point getForRemove(Point point){
-        Point boundaryPoint;
-        int pointIndex = lineList.indexOf(point);
-        if (pointIndex == -1)
-            return null;
-
-        if (lineList.indexOf(point) % 2 == 0){
-            boundaryPoint = lineList.get(pointIndex + 1);
-            lineList.remove(pointIndex);
-            lineList.remove(pointIndex);
-        }
-        else {
-            boundaryPoint = lineList.get(pointIndex - 1);
-            lineList.remove(pointIndex);
-            lineList.remove(pointIndex - 1);
-        }
-        return boundaryPoint;
+    public int getLineListSize() {
+        return lineList.size();
     }
 
-    public LinkedList<Point> getLineList() {
+    public LinkedList<Line> getLineList() {
 
         return lineList;
-    }
-
-    public void setWeight(String weight) {
-       weightList.add(weight);
-    }
-
-    public void removeWeight(int index){
-        weightList.remove(index);
-    }
-
-    public LinkedList<String> getWeightList() {
-
-        return weightList;
-    }
-
-    public String getWeight(int index) {
-
-        return weightList.get(index);
     }
 }

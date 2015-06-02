@@ -1,8 +1,8 @@
 package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners;
 
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Line;
 import by.zverugo.bsuir.ppvis.grapheditor.logic.LinePainter;
 import by.zverugo.bsuir.ppvis.grapheditor.logic.Vertex;
-import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
@@ -21,14 +21,12 @@ public class VertexRemover extends MouseAdapter {
     private Vertex currentVertex;
     private Tab tabPanel;
     private JLabel vertexLabel;
-    private GraphStorage graphStorage;
     private LineStorage lineStorage;
     private VertexStorage vertexStorage;
     private LinePainter linePainter;
 
-    public VertexRemover(JPanel currentVertex, JComponent tabPanel,JLabel vertexLabel, GraphStorage graphStorage) {
+    public VertexRemover(JPanel currentVertex, JComponent tabPanel,JLabel vertexLabel) {
         this.tabPanel = (Tab)tabPanel;
-        this.graphStorage = graphStorage;
         this.currentVertex = (Vertex) currentVertex;
         this.vertexLabel = vertexLabel;
         toolBar = this.tabPanel.getToolBar();
@@ -41,31 +39,40 @@ public class VertexRemover extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if (toolBar.getDeleteVertexButton().isSelected()) {
             Point vertexCoordinate = currentVertex.getCoordinate();
-            Point temp = lineStorage.getForRemove(vertexCoordinate);
+            Line temp = lineStorage.getForRemove(vertexCoordinate);
 
             while(temp != null){
-                linePainter.removeLine(temp.x, temp.y, vertexCoordinate.x, vertexCoordinate.y);
+                if (temp.getStartPoint().x == temp.getFinishPoint().x
+                        && temp.getStartPoint().y == temp.getFinishPoint().y) {
+                    linePainter.removeLoop(temp.getStartPoint().x, temp.getStartPoint().y);
+                    temp = lineStorage.getForRemove(vertexCoordinate);
+                    continue;
+                }
+                linePainter.removeLine(temp.getStartPoint().x, temp.getStartPoint().y,
+                        temp.getFinishPoint().x, temp.getFinishPoint().y);
+                tabPanel.remove(temp.getWeightLabel());
                 temp = lineStorage.getForRemove(vertexCoordinate);
                 tabPanel.repaint();
             }
 
-            LinkedList <Point> lineList = lineStorage.getLineList();
-            boolean isEven = false;
-            Point firstPoint = new Point();
+            LinkedList <Line> lineList = lineStorage.getLineList();
 
-            for(Point point : lineList){
-                if(!isEven){
-                    firstPoint = point;
-                    isEven = true;
-                } else {
-                    linePainter.drawLine(firstPoint.x, firstPoint.y, point.x, point.y);
-                    isEven = false;
+            for(Line line : lineList){
+                if (line.getStartPoint().x == line.getFinishPoint().x
+                        && line.getStartPoint().y == line.getFinishPoint().y) {
+                    linePainter.drawLoop(line.getStartPoint().x,line.getStartPoint().y);
+                    continue;
                 }
 
-            }
+                linePainter.drawLine(line.getStartPoint().x, line.getStartPoint().y,
+                        line.getFinishPoint().x, line.getFinishPoint().y);
+                }
+
+            vertexStorage.removeVertexFromGraph(currentVertex);
+            vertexStorage.removeLineList(vertexStorage.getVertexList().indexOf(currentVertex));
 
             vertexStorage.removeVertex(currentVertex);
-            graphStorage.removeVertex(tabPanel, currentVertex);
+            tabPanel.remove(currentVertex);
             tabPanel.remove(vertexLabel);
             tabPanel.repaint();
         }

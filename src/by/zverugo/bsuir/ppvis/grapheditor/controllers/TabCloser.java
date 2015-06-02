@@ -15,6 +15,8 @@ public class TabCloser implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int select = tabbedPane.getSelectedIndex();
         if (select >= 0){
+//            JScrollPane tab = (JScrollPane) tabbedPane.getSelectedComponent();
+//            tab.getTabToolBar().removeButtonsListeners();
             tabbedPane.removeTabAt(select);
         }
     }

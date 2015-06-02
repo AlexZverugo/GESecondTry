@@ -50,14 +50,6 @@ public class MainFrame {
     }
 
 
-    private void buildScrollBar() {
-        JScrollBar verticalScroll = new JScrollBar();
-        JScrollBar horizontalScroll = new JScrollBar(Adjustable.HORIZONTAL);
-        frame.add(horizontalScroll, BorderLayout.SOUTH);
-        frame.add(verticalScroll, BorderLayout.EAST);
-    }
-
-
     private void setUpWindowSize() {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();

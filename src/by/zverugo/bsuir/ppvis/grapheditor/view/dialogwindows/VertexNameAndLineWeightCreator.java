@@ -7,12 +7,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class VertexNameAndLineWeight extends JOptionPane {
+public class VertexNameAndLineWeightCreator extends JOptionPane {
 
     private JFrame frame;
     private String currentName;
 
-    public VertexNameAndLineWeight(JFrame frame, String currentName){
+    public VertexNameAndLineWeightCreator(JFrame frame, String currentName){
         this.frame = frame;
         this.currentName = currentName;
 

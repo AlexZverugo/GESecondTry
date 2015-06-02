@@ -1,19 +1,14 @@
 package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners;
 
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Line;
 import by.zverugo.bsuir.ppvis.grapheditor.logic.LinePainter;
 import by.zverugo.bsuir.ppvis.grapheditor.logic.Vertex;
-import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
+import by.zverugo.bsuir.ppvis.grapheditor.storages.VertexStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,39 +20,55 @@ public class LineBuilder extends MouseAdapter {
 
     private GEToolBar toolBar;
     private LineStorage lineStorage;
-    private GraphStorage graphStorage;
     private Vertex currentVertex;
     private Tab tabPanel;
     private LinePainter linePainter;
+    private VertexStorage vertexStorage;
 
 
 
-    public LineBuilder(Vertex currentVertex, JComponent tabPanel, GraphStorage graphStorage) {
+    public LineBuilder(Vertex currentVertex, JComponent tabPanel) {
         this.tabPanel = (Tab)tabPanel;
         toolBar = this.tabPanel.getToolBar();
-        this.graphStorage = graphStorage;
         lineStorage = this.tabPanel.getLineStorage();
         this.currentVertex = currentVertex;
         linePainter = this.tabPanel.getLinePainter();
+        vertexStorage = ((Tab) tabPanel).getVertexStorage();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         if (toolBar.getArcButton().isSelected()) {
-            if (lineStorage.getCurrentIndx() == 0) {
+            if (lineStorage.getCurrentIndex() == 0) {
                 lineStorage.setPoint(currentVertex.getCoordinate());
-//                lineStorage.setPointOfLine(currentVertex.getCoordinate());
                 lineStorage.setVertexSelected(true);
-                graphStorage.setTempVertex(currentVertex);
+                lineStorage.setVertexBuffer(currentVertex);
                 moveMouse();
             } else
-            if (lineStorage.getCurrentIndx() == 1) {
+            if (lineStorage.getCurrentIndex() == 1) {
+                if (currentVertex.getCoordinate().equals(lineStorage.getFirstPoint())) {
+                    lineStorage.setPoint(currentVertex.getCoordinate());
+                    Line line = new Line(lineStorage.getFirstPoint(), lineStorage.getSecondPoint());
+                    lineStorage.setLine(line);
+                    line.setVertexes(lineStorage.getStartVertex(),currentVertex);
+                    lineStorage.setVertexSelected(false);
+                    linePainter.clearLastTempLine();
+                    linePainter.drawLoop(currentVertex.getCoordinate().x, currentVertex.getCoordinate().y);
+                    lineStorage.reset();
+                    tabPanel.repaint();
+                    return;
+                }
                 lineStorage.setPoint(currentVertex.getCoordinate());
-//                lineStorage.setPointOfLine(currentVertex.getCoordinate());
+                Line line = new Line(lineStorage.getFirstPoint(), lineStorage.getSecondPoint());
+                lineStorage.setLine(line);
+                line.setVertexes(lineStorage.getStartVertex(),currentVertex);
+                vertexStorage.setVertexToList(vertexStorage.getVertexIndex(lineStorage.getStartVertex()), currentVertex);
+                vertexStorage.setVertexToList(vertexStorage.getVertexIndex(currentVertex),lineStorage.getStartVertex());
                 lineStorage.setVertexSelected(false);
                 linePainter.clearLastTempLine();
                 linePainter.drawLine(lineStorage.getFirstPoint().x, lineStorage.getFirstPoint().y,
                         lineStorage.getSecondPoint().x, lineStorage.getSecondPoint().y);
+
                 lineStorage.reset();
                 tabPanel.setState(true);
                 tabPanel.repaint();
@@ -76,10 +87,9 @@ public class LineBuilder extends MouseAdapter {
                 if (!lineStorage.isVertexSelected() && lineStorage.checkBuffer()) {
                     tabPanel.removeMouseMotionListener(this);
                 }
-                if (!toolBar.getArcButton().isSelected() && lineStorage.getFirstPoint() != null) {
+                if (!toolBar.getArcButton().isSelected() && lineStorage.isVertexSelected()) {
                     linePainter.clearLastTempLine();
                     tabPanel.removeMouseMotionListener(this);
-                    lineStorage.removePointOfLine(currentVertex.getCoordinate());
                     tabPanel.repaint();
                     lineStorage.reset();
                 }

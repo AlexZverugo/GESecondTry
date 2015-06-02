@@ -1,6 +1,5 @@
 package by.zverugo.bsuir.ppvis.grapheditor.logic;
 
-import by.zverugo.bsuir.ppvis.grapheditor.storages.GraphStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
@@ -16,14 +15,12 @@ public class VertexCreator extends MouseAdapter {
     private JFrame frame;
     private Tab tabPanel;
     private LineStorage lineStorage;
-    private GraphStorage graphStorage;
 
-    public VertexCreator(JComponent tabPanel, JFrame frame, GraphStorage graphStorage) {
+    public VertexCreator(JComponent tabPanel, JFrame frame) {
         this.frame = frame;
         this.tabPanel = (Tab) tabPanel;
         toolBar = this.tabPanel.getToolBar();
         lineStorage = this.tabPanel.getLineStorage();
-        this.graphStorage = graphStorage;
     }
 
     @Override
@@ -31,7 +28,7 @@ public class VertexCreator extends MouseAdapter {
         if (toolBar.getVertexButton().isSelected()) {
             int centerX = e.getX() + 9;
             int centerY = e.getY() + 9;
-            Vertex vertex = new Vertex(frame, tabPanel, centerX, centerY, graphStorage);
+            Vertex vertex = new Vertex(frame, tabPanel, centerX, centerY);
             vertex.setBounds(e.getX(), e.getY(), 16, 16);
             tabPanel.add(vertex);
             vertex.validate();

@@ -6,9 +6,9 @@ import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabCloser;
 import by.zverugo.bsuir.ppvis.grapheditor.controllers.TabCreator;
 import by.zverugo.bsuir.ppvis.grapheditor.util.GraphEditorKeys;
 import by.zverugo.bsuir.ppvis.grapheditor.util.StaticResource;
-import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.FileOpener;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.TabsContainer;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
+import by.zverugo.bsuir.ppvis.grapheditor.xml.FileOpener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -82,7 +82,7 @@ public class MenuBuilder implements Builder<JMenu> {
     public MenuBuilder newItem() {
         JMenuItem newItem = new JMenuItem(GraphEditorKeys.NEW, KeyEvent.VK_N);
         newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-        newItem.addActionListener(new TabCreator(frame,tabbedPane, toolBar,saveItem));
+        newItem.addActionListener(new TabCreator(frame,tabbedPane, toolBar));
         this.newItem = newItem;
 
         return this;
@@ -90,9 +90,12 @@ public class MenuBuilder implements Builder<JMenu> {
 
     public MenuBuilder openItem() {
         JMenuItem openItem = new JMenuItem(GraphEditorKeys.OPEN, new ImageIcon(StaticResource.OPEN_IMAGE.path()));
+        openItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
         openItem.setMnemonic(KeyEvent.VK_O);
+        openItem.addActionListener(new FileOpener(tabbedPane, frame, toolBar));
         this.openItem = openItem;
-        openItem.addActionListener(new FileOpener(frame,tabbedPane, toolBar,saveItem));
+
+//        openItem.addActionListener(new FileOpener(frame,tabbedPane, toolBar,saveItem));
 
         return this;
     }

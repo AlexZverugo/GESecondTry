@@ -1,6 +1,7 @@
 package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners;
 
-import by.zverugo.bsuir.ppvis.grapheditor.view.dialogwindows.VertexNameAndLineWeight;
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Vertex;
+import by.zverugo.bsuir.ppvis.grapheditor.view.dialogwindows.VertexNameAndLineWeightCreator;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
@@ -18,6 +19,7 @@ public class VertexNameBuilder extends MouseAdapter {
     private JFrame frame;
     private String name;
     private JLabel vertexLabel;
+    private Vertex currentVertex;
     private int coordX;
     private int coordY;
     private Tab tabPanel;
@@ -25,10 +27,11 @@ public class VertexNameBuilder extends MouseAdapter {
 
 
 
-    public VertexNameBuilder( String name, JLabel vertexLabel, JComponent tabPanel, int x, int y) {
+    public VertexNameBuilder(Vertex currentVertex, String name, JLabel vertexLabel, JComponent tabPanel, int x, int y) {
         this.tabPanel = (Tab)tabPanel;
         toolBar = this.tabPanel.getToolBar();
         frame = this.tabPanel.getFrame();
+        this.currentVertex = currentVertex;
         this.name = name;
         this.vertexLabel = vertexLabel;
         coordX = x;
@@ -41,9 +44,10 @@ public class VertexNameBuilder extends MouseAdapter {
         if (!toolBar.getArcButton().isSelected() && !toolBar.getVertexButton()
                 .isSelected() && !toolBar.getDeleteVertexButton()
                 .isSelected()) {
-            VertexNameAndLineWeight vertexNameAndLineWeightDialog = new VertexNameAndLineWeight(frame, name);
-            name = vertexNameAndLineWeightDialog.createVertexName();
+            VertexNameAndLineWeightCreator vertexNameAndLineWeightCreatorDialog = new VertexNameAndLineWeightCreator(frame, name);
+            name = vertexNameAndLineWeightCreatorDialog.createVertexName();
             vertexLabel.setText(name);
+            currentVertex.setName(name);
             vertexLabel.setBounds(coordX + 8, coordY + 8,
                         (int) font.getStringBounds(name, new FontRenderContext(null, true, true)).getWidth(),15);
             tabPanel.add(vertexLabel);

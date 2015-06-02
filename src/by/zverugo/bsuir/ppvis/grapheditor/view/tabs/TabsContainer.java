@@ -12,6 +12,7 @@ public class TabsContainer extends JTabbedPane {
     public TabsContainer() {
         setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         setVisible(true);
-        addChangeListener(new TabChooser(this));
+
+//        addChangeListener(new TabChooser(this));
     }
 }

@@ -5,11 +5,14 @@ import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectAr
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectMoveListener;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectRemoveListener;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.toolbarlisteners.SelectVertexListener;
+import by.zverugo.bsuir.ppvis.grapheditor.xml.GraphFileChooser;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+import java.awt.Dimension;
 
 /**
  * Created by Alex on 23.03.2015.
@@ -22,16 +25,18 @@ public class GEToolBar extends JToolBar {
     private JToggleButton moveVertexButton;
 
 
+
     public GEToolBar() {
         vertexButton = buildVertexButton();
         arcButton = buildArcButton();
         deleteVertexButton = buildDeleteVertexButton();
-        moveVertexButton = buildMoveVertexButton ();
+        moveVertexButton = buildMoveVertexButton();
         setButtonsSelected();
         toolBarOptionsAndItems();
     }
 
-    private JToggleButton buildVertexButton(){
+
+    private JToggleButton buildVertexButton() {
         JToggleButton vertexButton = new JToggleButton(new ImageIcon(StaticResource.VERTEX_IMAGE.path()));
 
         return vertexButton;
@@ -60,8 +65,9 @@ public class GEToolBar extends JToolBar {
         arcButton.addActionListener(new SelectArcListener(this));
         deleteVertexButton.addActionListener(new SelectRemoveListener(this));
         moveVertexButton.addActionListener(new SelectMoveListener(this));
-
     }
+
+
 
     public JToggleButton getVertexButton() {
 

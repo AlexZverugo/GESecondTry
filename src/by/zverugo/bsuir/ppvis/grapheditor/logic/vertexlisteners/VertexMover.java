@@ -1,6 +1,9 @@
 package by.zverugo.bsuir.ppvis.grapheditor.logic.vertexlisteners;
 
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Line;
+import by.zverugo.bsuir.ppvis.grapheditor.logic.LinePainter;
 import by.zverugo.bsuir.ppvis.grapheditor.logic.Vertex;
+import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
@@ -9,9 +12,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.LinkedList;
 
 /**
  * Created by Alex on 08.05.2015.
@@ -21,52 +26,80 @@ public class VertexMover  implements MouseMotionListener {
     private Tab tabPanel;
     private Vertex currentVertex;
     private GEToolBar toolBar;
-    private boolean state;
+    private LineStorage lineStorage;
+    private LinkedList<Line> lines;
+    private LinkedList<Vertex> fixedVertex;
+    private LinePainter linePainter;
+    private boolean flag;
 
-    public VertexMover (JComponent tabPanel, JComponent currentVertex, GEToolBar toolBar) {
+    public VertexMover (JComponent tabPanel, JComponent currentVertex) {
         this.tabPanel = (Tab) tabPanel;
         this.currentVertex = (Vertex) currentVertex;
-        this.toolBar = toolBar;
+        this.toolBar = this.tabPanel.getToolBar();
+        lineStorage = this.tabPanel.getLineStorage();
+        linePainter = new LinePainter(this.tabPanel);
+        lines = new LinkedList<Line>();
+        fixedVertex = new LinkedList<Vertex>();
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
         if(toolBar.getMoveVertexButton().isSelected()){
-            tabPanel.remove(currentVertex);
-            currentVertex.setBounds(e.getPoint().x,e.getPoint().y,  16, 16);
-            tabPanel.add(currentVertex);
+
+
+            for (Line line : lineStorage.getLineList()) {
+                if (line.getStartPoint().x == currentVertex.getCoordinate().x
+                        && line.getStartPoint().y == currentVertex.getCoordinate().y) {
+                    linePainter.removeLine(line.getStartPoint().x, line.getStartPoint().y,
+                            line.getFinishPoint().x, line.getFinishPoint().y);
+                    fixedVertex.add(line.getFinishVertex());
+                    lines.add(line);
+                } else
+                if (line.getFinishPoint().x == currentVertex.getCoordinate().x
+                        && line.getFinishPoint().y == currentVertex.getCoordinate().y) {
+                    linePainter.removeLine(line.getStartPoint().x, line.getStartPoint().y,
+                            line.getFinishPoint().x, line.getFinishPoint().y);
+                    fixedVertex.add(line.getStartVertex());
+                    lines.add(line);
+
+                }
+            }
+
+            flag = false;
+
+
+            for (Line line : lines) {
+                if (line.getStartPoint().x == currentVertex.getCoordinate().x
+                        && line.getStartPoint().y == currentVertex.getCoordinate().y) {
+                    linePainter.removeLine(line.getStartPoint().x,line.getStartPoint().y,line.getFinishPoint().x,line.getFinishPoint().y);
+                    linePainter.drawLine(fixedVertex.get(lines.indexOf(line)).getCoordinate().x,
+                            fixedVertex.get(lines.indexOf(line)).getCoordinate().y,e.getComponent().getX() + e.getX(), e.getComponent().getY() + e.getY());
+                    line.setStart(new Point(e.getComponent().getX() + e.getX(), e.getComponent().getY() + e.getY()));
+                } else {
+                    linePainter.removeLine(fixedVertex.get(lines.indexOf(line)).getCoordinate().x,
+                            fixedVertex.get(lines.indexOf(line)).getCoordinate().y, line.getFinishPoint().x, line.getFinishPoint().y);
+                    linePainter.drawLine(e.getComponent().getX() + e.getX(), e.getComponent().getY() + e.getY(), fixedVertex.get(lines.indexOf(line)).getCoordinate().x,
+                            fixedVertex.get(lines.indexOf(line)).getCoordinate().y);
+                    line.setFinish(new Point(e.getComponent().getX() + e.getX(),e.getComponent().getY() + e.getY()));
+                }
+
+            }
+
+
+            currentVertex.setBounds(e.getComponent().getX() + e.getX(),e.getComponent().getY() + e.getY(),16, 16);
+            currentVertex.setCoordX(e.getComponent().getX() + e.getX());
+            currentVertex.setCoordY(e.getComponent().getY() + e.getY());
             tabPanel.repaint();
+
+
+
+//            tabPanel.add(currentVertex);
         }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-//        if(toolBar.getMoveVertexButton().isSelected()) {
-//            tabPanel.remove(currentVertex);
-//            currentVertex.setBounds(e.getPoint().x,e.getPoint().y,  16, 16);
-//            tabPanel.add(currentVertex);
-//            tabPanel.repaint();
-//        }
 
     }
 
-//    @Override
-//    public void mouseReleased(MouseEvent e) {
-//        if(toolBar.getMoveVertexButton().isSelected()){
-//            state = false;
-//        }
-//    }
-
-    private void drawTempLine(int x1, int y1, int x2, int y2) {
-
-        Graphics g = tabPanel.getTempImage().getGraphics();
-        Graphics2D g2 = (Graphics2D) g;
-
-        g2.setStroke(new BasicStroke(3));
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setBackground(new Color(255, 255, 255, 0));
-        g2.setColor(Color.black);
-        g2.clearRect(0, 0, 1500, 1500);
-        g2.drawLine(x1, y1, x2, y2);
-    }
 }

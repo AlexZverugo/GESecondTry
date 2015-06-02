@@ -1,13 +1,15 @@
-package by.zverugo.bsuir.ppvis.grapheditor.view.dialogwindows;
+package by.zverugo.bsuir.ppvis.grapheditor.controllers;
 
+import by.zverugo.bsuir.ppvis.grapheditor.logic.Line;
 import by.zverugo.bsuir.ppvis.grapheditor.storages.LineStorage;
+import by.zverugo.bsuir.ppvis.grapheditor.view.dialogwindows.VertexNameAndLineWeightCreator;
 import by.zverugo.bsuir.ppvis.grapheditor.view.tabs.Tab;
 import by.zverugo.bsuir.ppvis.grapheditor.view.toolbar.GEToolBar;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.FontRenderContext;
@@ -31,8 +33,7 @@ public class LineWeight extends MouseAdapter {
         toolBar = tabPanel.getToolBar();
         frame = tabPanel.getFrame();
         lineStorage = tabPanel.getLineStorage();
-        weight = "";
-        lineLabel = new JLabel();
+        weight = " ";
         font = new Font(weight,Font.PLAIN,32);
     }
 
@@ -41,34 +42,28 @@ public class LineWeight extends MouseAdapter {
                 .isSelected() && !toolBar.getDeleteVertexButton()
                 .isSelected()) {
 
-            LinkedList<Point> lineList = lineStorage.getLineList();
-            boolean isEven = false;
-            Point firstPoint = new Point();
+            LinkedList<Line> lineList = lineStorage.getLineList();
 
-            for(Point point : lineList){
-                if(!isEven){
-                    firstPoint = point;
-                    isEven = true;
-                } else {
-                    int middleX = (firstPoint.x + point.x)/2;
-                    int middleY = (firstPoint.y + point.y)/2;
+            for(Line line : lineList){
+                    int middleX = (line.getStartPoint().x + line.getFinishPoint().x)/2;
+                    int middleY = (line.getStartPoint().y + line.getFinishPoint().y)/2;
 
                     if((e.getX() > middleX  - 5 && e.getX() < middleX + 5)  && (e.getY() > middleY - 5 &&  e.getY() < middleY + 5)) {
-                        invokeOptionPane(e.getX(),e.getY());
+                        invokeOptionPane(line, e.getX(),e.getY());
                         break;
                     }
-
-                    isEven = false;
-                }
             }
-
         }
     }
 
-    private void invokeOptionPane (int x, int y){
-        VertexNameAndLineWeight vertexNameAndLineWeightDialog = new VertexNameAndLineWeight(frame, weight);
-        weight = vertexNameAndLineWeightDialog.createVertexName();
+    private void invokeOptionPane (Line line, int x, int y){
+        lineLabel = new JLabel();
+        VertexNameAndLineWeightCreator vertexNameAndLineWeightCreatorDialog = new VertexNameAndLineWeightCreator(frame,"");
+        weight = vertexNameAndLineWeightCreatorDialog.createVertexName();
+        line.setWeight(weight);
         lineLabel.setText(weight);
+        line.setWeightLabel(lineLabel);
+        lineLabel.setForeground(Color.RED);
         lineLabel.setBounds(x + 3, y + 3,
                 (int) font.getStringBounds(weight, new FontRenderContext(null, true, true)).getWidth(), 15);
         tabPanel.add(lineLabel);
